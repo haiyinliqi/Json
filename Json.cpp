@@ -26,7 +26,7 @@ namespace json {
 		}
 		if (name() != "class") {
 
-			throw std::invalid_argument("·ÇÀàÀàĞÍ²»ÄÜÊ¹ÓÃ×Ö·û´®×÷ÎªË÷Òı");
+			throw std::invalid_argument("éç±»ç±»å‹ä¸èƒ½ä½¿ç”¨å­—ç¬¦ä¸²ä½œä¸ºç´¢å¼•");
 		}
 
 		return (*static_cast<jclass*>(_value->get_val()))[jstring("\"" + str + "\"")];
@@ -34,12 +34,12 @@ namespace json {
 	const Json& Json::operator[](const std::string& str) const {
 		if (name() != "class") {
 
-			throw std::invalid_argument("·ÇÀàÀàĞÍ²»ÄÜÊ¹ÓÃ×Ö·û´®×÷ÎªË÷Òı");
+			throw std::invalid_argument("éç±»ç±»å‹ä¸èƒ½ä½¿ç”¨å­—ç¬¦ä¸²ä½œä¸ºç´¢å¼•");
 		}
 		String key = "\"" + str + "\"";
 		if (!static_cast<Class*>(_value.get())->value.contains(key)) {
 
-			throw std::invalid_argument("Ë÷Òı²»´æÔÚ");
+			throw std::invalid_argument("ç´¢å¼•ä¸å­˜åœ¨");
 		}
 
 		return static_cast<jclass*>(_value->get_val())->at(key);
@@ -50,7 +50,7 @@ namespace json {
 		}
 		if (name() != "list") {
 
-			throw std::invalid_argument("·ÇÁĞ±íÀàĞÍ²»ÄÜÊ¹ÓÃÊı×Ö×÷ÎªË÷Òı");
+			throw std::invalid_argument("éåˆ—è¡¨ç±»å‹ä¸èƒ½ä½¿ç”¨æ•°å­—ä½œä¸ºç´¢å¼•");
 		}
 		if (static_cast<List*>(_value.get())->value.size() <= index) {
 			static_cast<List*>(_value.get())->value.resize(index + 1);
@@ -61,11 +61,11 @@ namespace json {
 	const Json& Json::operator[](const std::size_t& index) const {
 		if (name() != "list") {
 
-			throw std::invalid_argument("·ÇÁĞ±íÀàĞÍ²»ÄÜÊ¹ÓÃÊı×Ö×÷ÎªË÷Òı");
+			throw std::invalid_argument("éåˆ—è¡¨ç±»å‹ä¸èƒ½ä½¿ç”¨æ•°å­—ä½œä¸ºç´¢å¼•");
 		}
 		if (static_cast<List*>(_value.get())->value.size() <= index) {
 
-			throw std::invalid_argument("ÁĞ±í³¤¶È²»×ã");
+			throw std::invalid_argument("åˆ—è¡¨é•¿åº¦ä¸è¶³");
 		}
 
 		return static_cast<jlist*>(_value->get_val())->at(index);
@@ -136,7 +136,7 @@ namespace json {
 		}
 		if (name() != "class") {
 
-			throw std::invalid_argument("·ÇÀàÀàĞÍ²»ÄÜÌí¼Ó¼üÖµ¶Ô");
+			throw std::invalid_argument("éç±»ç±»å‹ä¸èƒ½æ·»åŠ é”®å€¼å¯¹");
 		}
 		static_cast<jclass*>(_value->get_val())->insert(std::make_pair("\"" + key + "\"", ptr));
 	}
@@ -146,14 +146,14 @@ namespace json {
 		}
 		if (name() != "list") {
 
-			throw std::invalid_argument("·ÇÁĞ±íÀàĞÍ²»ÄÜÌí¼ÓÖµ");
+			throw std::invalid_argument("éåˆ—è¡¨ç±»å‹ä¸èƒ½æ·»åŠ å€¼");
 		}
 		static_cast<jlist*>(_value->get_val())->emplace_back(ptr);
 	}
 	bool Json::contains(const std::string& str) const {
 		if (name() != "class") {
 
-			throw std::invalid_argument("·ÇÀàÀàĞÍ²»ÄÜÊ¹ÓÃ×Ö·û´®×÷ÎªÏÂ±ê");
+			throw std::invalid_argument("éç±»ç±»å‹ä¸èƒ½ä½¿ç”¨å­—ç¬¦ä¸²ä½œä¸ºä¸‹æ ‡");
 		}
 
 		return static_cast<jclass*>(_value->get_val())->contains("\"" + str + "\"");
@@ -168,7 +168,7 @@ namespace json {
 			return static_cast<jlist*>(_value->get_val())->size();
 		}
 
-		throw std::invalid_argument("Ö»ÓĞÁĞ±íºÍÀàÓĞ´óĞ¡");
+		throw std::invalid_argument("åªæœ‰åˆ—è¡¨å’Œç±»æœ‰å¤§å°");
 	}
 	std::string Json::name() const noexcept {
 		if (_value == nullptr) {
@@ -181,7 +181,7 @@ namespace json {
 	jnumber Json::as_num() const {
 		if (name() != "number") {
 
-			throw std::invalid_argument("Ö»ÓĞÊı×ÖÀàĞÍ¿ÉÒÔÊ¹ÓÃas_num");
+			throw std::invalid_argument("åªæœ‰æ•°å­—ç±»å‹å¯ä»¥ä½¿ç”¨as_num");
 		}
 
 		return *static_cast<jnumber*>(_value->get_val());
@@ -189,7 +189,7 @@ namespace json {
 	jbool Json::as_bool() const {
 		if (name() != "bool") {
 
-			throw std::invalid_argument("Ö»ÓĞ²¼¶ûÀàĞÍ¿ÉÒÔÊ¹ÓÃas_bool");
+			throw std::invalid_argument("åªæœ‰å¸ƒå°”ç±»å‹å¯ä»¥ä½¿ç”¨as_bool");
 		}
 
 		return *static_cast<jbool*>(_value->get_val());
@@ -197,7 +197,7 @@ namespace json {
 	jstring Json::as_string() const {
 		if (name() != "string") {
 
-			throw std::invalid_argument("Ö»ÓĞ×Ö·û´®ÀàĞÍ¿ÉÒÔÊ¹ÓÃas_string");
+			throw std::invalid_argument("åªæœ‰å­—ç¬¦ä¸²ç±»å‹å¯ä»¥ä½¿ç”¨as_string");
 		}
 
 		return *static_cast<jstring*>(_value->get_val());
@@ -206,14 +206,14 @@ namespace json {
 	static void end_line(std::ostream& os) {
 		os << "\n";
 		for (std::size_t i = 0;i < tabs;i++) {
-			os.put('	');
+			os.put('\t');
 		}
 	}
 	static Base_type* new_type(const std::string& value) {
 		if (value == "null") {
 			return nullptr;
 		}
-		else if (value.size() > 2) {
+		else if (value.size() >= 2) {
 			if (value == "true" || value == "false") {
 				return new Bool(value);
 			}
@@ -269,13 +269,13 @@ namespace json {
 	Number::Number(const std::string& str) {
 		if (str.empty()) {
 
-			throw std::invalid_argument("¿Õ×Ö·û´®²»ÄÜÓÃÓÚ¹¹ÔìÊı×Ö");
+			throw std::invalid_argument("ç©ºå­—ç¬¦ä¸²ä¸èƒ½ç”¨äºæ„é€ æ•°å­—");
 		}
 		std::istringstream iss(str);
 		iss >> value;
 		if (iss.fail() || !iss.eof()) {
 
-			throw std::invalid_argument("ÓÃÓÚ¹¹ÔìÊı×ÖµÄ×Ö·û´®²»ÄÜ°üº¬·ÇÊı×Ö×Ö·û");
+			throw std::invalid_argument("ç”¨äºæ„é€ æ•°å­—çš„å­—ç¬¦ä¸²ä¸èƒ½åŒ…å«éæ•°å­—å­—ç¬¦");
 		}
 	}
 	std::ostream& operator<<(std::ostream& os, const Number& value) noexcept {
@@ -286,7 +286,7 @@ namespace json {
 	Bool::Bool(const std::string& str) {
 		if (str!="true"&&str!="false") {
 
-			throw std::invalid_argument("ÓÚ¹¹Ôì²¼¶ûĞÍµÄ×Ö·û´®Ö»ÄÜÊÇ¡°true¡±»ò¡°false¡±");
+			throw std::invalid_argument("äºæ„é€ å¸ƒå°”å‹çš„å­—ç¬¦ä¸²åªèƒ½æ˜¯â€œtrueâ€æˆ–â€œfalseâ€");
 		}
 		value = str == "true";
 	}
@@ -298,9 +298,24 @@ namespace json {
 	String::String(const std::string& str) {
 		if (str.size() < 2 || str[0] != '\"' || str.back() != '\"') {
 
-			throw std::invalid_argument("ÓÃÓÚ¹¹Ôì×Ö·û´®µÄ×Ö·û´®¸ñÊ½²»ºÏ·¨");
+			throw std::invalid_argument("ç”¨äºæ„é€ å­—ç¬¦ä¸²çš„å­—ç¬¦ä¸²æ ¼å¼ä¸åˆæ³•");
 		}
 		value = str.substr(1, str.size() - 2);
+		bool change = false;
+		std::erase_if(value, [&change](const char& c)->bool {
+			if (change) {
+				change = false;
+
+				return false;
+			}
+			if (c == '\\') {
+				change = true;
+
+				return true;
+			}
+
+			return false;
+			});
 	}
 	std::ostream& operator<<(std::ostream& os, const String& value) noexcept {
 		os.put('\"');
@@ -317,65 +332,27 @@ namespace json {
 	List::List(const std::string& str) {
 		if (str.size() < 2 || str[0] != '[' || str.back() != ']') {
 
-			throw std::invalid_argument("ÓÃÓÚ¹¹ÔìÁĞ±íµÄ×Ö·û´®¸ñÊ½²»ºÏ·¨");
+			throw std::invalid_argument("ç”¨äºæ„é€ åˆ—è¡¨çš„å­—ç¬¦ä¸²æ ¼å¼ä¸åˆæ³•");
 		}
 		std::string copy = str;
-		bool change = false;
-		bool instr = false;
-		std::size_t cnt = 0;
-		std::erase_if(copy, [&cnt, &change, &instr](const char& c)->bool {
-			if (change) {
-				change = false;
-
-				return false;
-			}
-			if (cnt == 1 && c == '\\') {
-				change = true;
-
-				return true;
-			}
-			if (c == '\"') {
-				instr = !instr;
-			}
-			if (instr) {
-
-				return false;
-			}
-			if (c == '{' || c == '[') {
-				cnt++;
-
-				return false;
-			}
-			if (c == '}' || c == ']') {
-				if (cnt == 0) {
-
-					throw std::invalid_argument("ÓÃÓÚ¹¹ÔìÁĞ±íµÄ×Ö·û´®ÖĞµÄ[],{}»ò\"\"²»³É¶Ô");
-				}
-				cnt--;
-
-				return false;
-			}
-			if (cnt == 1 && c == ' ' || c == '	' || c == '\n' || c == '\r') {
-
-				return true;
-			}
-
-			return false;
-			});
-		if (instr || cnt != 0) {
-
-			throw std::invalid_argument("ÓÃÓÚ¹¹ÔìÁĞ±íµÄ×Ö·û´®ÖĞµÄ[],{}»ò\"\"²»³É¶Ô");
-		}
 		copy.back() = ',';
 		std::size_t start = 1;
 		while (start < copy.size()) {
-			change = instr = false;
-			cnt = 0;
+			bool change = false, instr = false;
+			std::size_t cnt = 0;
 			std::size_t found = start - 1;
 			while (true) {
 				found++;
+				if (found == copy.size()) {
+
+					throw std::invalid_argument("ç”¨äºæ„é€ åˆ—è¡¨çš„å­—ç¬¦ä¸²ä¸­çš„[],{}æˆ–\"\"ä¸æˆå¯¹");
+				}
 				if (change) {
 					change = false;
+					continue;
+				}
+				if (copy[found] == '\\') {
+					change = true;
 					continue;
 				}
 				if (copy[found] == '\"') {
@@ -420,64 +397,27 @@ namespace json {
 	Class::Class(const std::string& str) {
 		if (str.size() < 2 || str[0] != '{' || str.back() != '}') {
 
-			throw std::invalid_argument("ÓÃÓÚ¹¹ÔìÀàµÄ×Ö·û´®¸ñÊ½²»ºÏ·¨");
+			throw std::invalid_argument("ç”¨äºæ„é€ ç±»çš„å­—ç¬¦ä¸²æ ¼å¼ä¸åˆæ³•");
 		}
 		std::string copy = str;
-		bool change = false;
-		bool instr = false;
-		std::size_t cnt = 0;
-		std::erase_if(copy, [&cnt, &change, &instr](const char& c)->bool {
-			if (change) {
-				change = false;
-
-				return false;
-			}
-			if (cnt == 1 && c == '\\') {
-				change = true;
-
-				return true;
-			}
-			if (c == '\"') {
-				instr = !instr;
-			}
-			if (instr) {
-
-				return false;
-			}
-			if (c == '{' || c == '[') {
-				cnt++;
-
-				return false;
-			}
-			if (c == '}' || c == ']') {
-				if (cnt == 0) {
-
-					throw std::invalid_argument("ÓÃÓÚ¹¹ÔìÀàµÄ×Ö·û´®ÖĞµÄ[],{}»ò\"\"²»³É¶Ô");
-				}
-				cnt--;
-
-				return false;
-			}
-			if (cnt == 1 && c == ' ' || c == '	' || c == '\n' || c == '\r') {
-
-				return true;
-			}
-
-			return false;
-			});
-		if (instr || cnt != 0) {
-			throw std::invalid_argument("ÓÃÓÚ¹¹ÔìÀàµÄ×Ö·û´®ÖĞµÄ[],{}»ò\"\"²»³É¶Ô");
-		}
 		copy.back() = ',';
 		std::size_t start = 1;
 		while (start < copy.size()) {
-			change = instr = false;
-			cnt = 0;
+			bool change = false, instr = false;
+			std::size_t cnt = 0;
 			std::size_t found = start - 1, num = 0;
 			while (true) {
 				found++;
+				if (found == copy.size()) {
+
+					throw std::invalid_argument("ç”¨äºæ„é€ ç±»çš„å­—ç¬¦ä¸²ä¸­çš„[],{}æˆ–\"\"ä¸æˆå¯¹");
+				}
 				if (change) {
 					change = false;
+					continue;
+				}
+				if (copy[found] == '\\') {
+					change = true;
 					continue;
 				}
 				if (copy[found] == '\"') {
@@ -504,7 +444,7 @@ namespace json {
 			std::string new_pair = copy.substr(start, found - start);
 			if (num != 1) {
 
-				throw std::invalid_argument("ÓÃÓÚ¹¹ÔìÀàµÄ×Ö·û´®ÖĞµÄ¼üÖµ¶Ô¸ñÊ½²»ºÏ·¨");
+				throw std::invalid_argument("ç”¨äºæ„é€ ç±»çš„å­—ç¬¦ä¸²ä¸­çš„é”®å€¼å¯¹æ ¼å¼ä¸åˆæ³•");
 			}
 			std::string key = new_pair.substr(0, new_pair.find(':'));
 			std::string new_value = new_pair.substr(key.size() + 1);
@@ -541,24 +481,36 @@ namespace json {
 		while (std::getline(is, line)) {
 			json += line;
 		}
-		Base_type* ptr;
-		if (json.size() > 2) {
-			if (json[0] == '\"' && json.back() == '\"') {
-				ptr = new String(json);
+		bool instr = false;
+		bool change = false;
+		std::erase_if(json, [&instr, &change](const char& c)->bool {
+			if (change) {
+				change = false;
+
+				return false;
 			}
-			else if (json[0] == '[' && json.back() == ']') {
-				ptr = new List(json);
+			if (c == '\\') {
+				change = true;
+
+				return false;
 			}
-			else if (json[0] == '{' && json.back() == '}') {
-				ptr = new Class(json);
+			if (c == '\"') {
+				instr = !instr;
+
+				return false;
 			}
-			else {
-				ptr = new Number(json);
+			if (instr) {
+
+				return false;
 			}
-		}
-		else {
-			ptr = new Number(json);
-		}
+			if (c == '\n' || c == '\r' || c == '\t' || c == ' ') {
+
+				return true;
+			}
+
+			return false;
+			});
+		Base_type* ptr = new_type(json);
 
 		return ptr;
 	}
